@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic Modal Styling for functionality */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 100;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .close-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <h2 class="logo">SkillSwap</h2>
+    <nav>
+        <input type="text" id="skillSearch" placeholder="Search skills..." onkeydown="if(event.key==='Enter') handleSearch()">
+        <a href="#" onclick="goToLogin(); return false;">Login</a>
+        <a href="#" class="btn" id="signUpBtn" onclick="goToSignUp(); return false;">Sign Up</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Swap Skills, Learn for Free</h1>
+    <button id="partnerBtn" class="main-cta">Find a Partner</button>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">Create Profile</div>
+        <div class="step">List Skills</div>
+        <div class="step">Match & Swap</div>
+    </div>
+</section>
+
+<div class="cards">
+    <!-- User 1 -->
+    <div class="card">
+        <img> <h3>Alex Rivera</h3>
+        <p>Teaching: Python | Learning: Guitar</p>
+        <button class="connect-btn" onclick="connectWithUser('Alex Rivera')">Connect</button>
+    </div>
+
+    <!-- User 2 -->
+    <div class="card">
+        <img> <h3>Sarah Chen</h3>
+        <p>Teaching: Graphic Design | Learning: French</p>
+        <button class="connect-btn" onclick="connectWithUser('Sarah Chen')">Connect</button>
+    </div>
+
+    <!-- User 3 -->
+    <div class="card">
+        <img> <h3>Marcus Jordan</h3>
+        <p>Teaching: Photography | Learning: Cooking</p>
+        <button class="connect-btn" onclick="connectWithUser('Marcus Jordan')">Connect</button>
+    </div>
+
+    <!-- User 4 -->
+    <div class="card">
+        <img> <h3>Elena Smith</h3>
+        <p>Teaching: Cooking | Learning: Web Development</p>
+        <button class="connect-btn" onclick="connectWithUser('Elena Smith')">Connect</button>
+    </div>
+</div>
+
+<!-- POPUP MODAL -->
+<div id="actionModal" class="modal">
+    <div class="modal-content">
+        <h3 id="modalTitle">Welcome!</h3>
+        <p id="modalText">Join our community to start swapping skills.</p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    // Connect Button Functionality
+    function connectWithUser(userName) {
+        const modal = document.getElementById('actionModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        
+        modalTitle.textContent = 'Connection Request';
+        modalText.textContent = `You've requested to connect with ${userName}! They will receive your request shortly.`;
+        modal.style.display = 'block';
+    }
+
+    // Close Modal
+    function closeModal() {
+        document.getElementById('actionModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('actionModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Navigate to Login Page
+    function goToLogin() {
+        window.location.href = 'login.html';
+    }
+
+    // Navigate to Sign Up Page
+    function goToSignUp() {
+        window.location.href = 'signup.html';
+    }
+
+    // Search functionality
+    function handleSearch() {
+        alert('Search feature coming soon!');
+    }
+</script>
+
+</body>
+</html>
